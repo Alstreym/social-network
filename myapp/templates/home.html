@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Home - Social Network</title>
+</head>
+<body>
+ <h1>Welcome to the Social Network</h1>
+ <ul>
+ {% for user in users %}
+    <li><a href="{% url 'profile-username' username=user.username %}">{{ user.username }}</a>
+    </li>
+ {% endfor %}
+ </ul>
+</body>
+</html>

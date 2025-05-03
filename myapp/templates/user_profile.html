@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Профиль {{ user_profile.username }}</h2>
+<p>Email: {{ user_profile.email }}</p>
+
+{% if user != user_profile %}
+    {% if is_following %}
+        <a href="{% url 'unfollow-user' user_profile.id %}" class="btn btn-danger">Отписаться</a>
+    {% else %}
+        <a href="{% url 'follow-user' user_profile.id %}" class="btn btn-primary">Подписаться</a>
+    {% endif %}
+{% endif %}
+
+<h4>Подписчики ({{ followers.count }})</h4>
+<ul>
+    {% for follow in followers %}
+        <li>{{ follow.follower.username }}</li>
+    {% endfor %}
+</ul>
+
+<h4>Подписки ({{ following.count }})</h4>
+<ul>
+    {% for follow in following %}
+        <li>{{ follow.following.username }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
